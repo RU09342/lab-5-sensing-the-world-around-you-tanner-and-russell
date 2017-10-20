@@ -1,3 +1,5 @@
+# Team Tanner and Russell
+
 # Lab 5: Getting a sense of the world around you
 So far, you have had really only looked at what your microcontroller has inside of it and how to get internal peripherals to behave with one another. Now it is time to start thinking about how the microcontroller can see the world. In previous labs, you have brought your controller from the mouth of the stork (or from the package from TI), fed it electrons, got it to say its first words, and helped it make its first steps. You have spent many sleepless night consoling your quintuplets when they threw tantrums, sometimes making you question your commitment to become a Junior ECE; but now it is time to send your little prodigies to kindergarten to make you proud. They will learn all about the world around them, not just the binary conditions of your dreary lifestyle. 
 
