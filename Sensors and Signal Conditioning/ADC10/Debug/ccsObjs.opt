@@ -1,0 +1,1 @@
+"./main.obj" "./Tanner's MSP Lib/button/button.obj" "./Tanner's MSP Lib/led/led.obj" "./Tanner's MSP Lib/setup/setup.obj" "./Tanner's MSP Lib/timer/timer.obj" "../lnk_msp430g2553.cmd" -llibc.a -llibc.a 
