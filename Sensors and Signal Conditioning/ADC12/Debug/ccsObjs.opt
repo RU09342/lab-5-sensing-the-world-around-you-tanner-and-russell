@@ -1,0 +1,1 @@
+"./adc12_a.obj" "./gpio.obj" "./main.obj" "./pmm.obj" "../lnk_msp430fr6989.cmd" -llibc.a -llibmath.a 
