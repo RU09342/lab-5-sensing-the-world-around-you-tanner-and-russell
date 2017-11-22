@@ -1,6 +1,13 @@
 #include "driverlib.h"
 #include "LCDDriver.h"
 
+/**
+*ADC12 code to read data over an ADC channel and display it via the LCD screen
+*@author Tanner Smith and Russell Binaco
+*Russell wrote a working version without the use of libraries
+*Tanner wrote this version that uses libraries
+*
+**/
 void main(void)
 {
     /** Stop WDT **/
@@ -135,6 +142,18 @@ void main(void)
     }
 }
 
+
+
+/**
+* ADC12 interrupt service routine
+* each time the ADC computes a value, it will be 
+* displayed on 3 spaces of the LCD screen, representing
+* the upper, middle, and last four bits of the 12-bit value
+* in Hexadecimal values. Each set of four bits must be masked
+* and shifted to display the correct value using the provided
+* LCD library. Converting to char values is different between numbers
+* and letters, which is handed in if-else blocks.
+**/
 #if defined(__TI_COMPILER_VERSION__) || defined(__IAR_SYSTEMS_ICC__)
 #pragma vector=ADC12_VECTOR
 __interrupt
