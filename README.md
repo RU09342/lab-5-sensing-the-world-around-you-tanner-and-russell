@@ -1,28 +1,47 @@
-# Team Tanner and Russell
+# Russell Binaco and Tanner Smith Lab 5 README
 
-# Lab 5: Getting a sense of the world around you
-So far, you have had really only looked at what your microcontroller has inside of it and how to get internal peripherals to behave with one another. Now it is time to start thinking about how the microcontroller can see the world. In previous labs, you have brought your controller from the mouth of the stork (or from the package from TI), fed it electrons, got it to say its first words, and helped it make its first steps. You have spent many sleepless night consoling your quintuplets when they threw tantrums, sometimes making you question your commitment to become a Junior ECE; but now it is time to send your little prodigies to kindergarten to make you proud. They will learn all about the world around them, not just the binary conditions of your dreary lifestyle. 
+Lab 5 Consists of using the microprocessors to read in data from a sensor circuit using an ADC, then visualizing that data through different means.
 
-## Goals for the lab:
-By the end of this lab, you should:
-* Interface your microcontrollers to multiple sensor types (voltage, current, and resistive)
-* Design Multiple types of signal conditioning circuits for these types of sensors.
-* Access and set up the internal ADC's
-* Design a basic breakout board for the MSP430FR2311
+## Sensors and Signal Conditioning: The Hardware
+For this lab, three different sensors were used: a photoresistor, a temperature sensor, and a phototransistor. These sensors produce a resistance, voltage, and current, respectively, satisfying
+the requirements for the lab. 
+In the images and videos folder, there is a picture that shows each circuit. 
+The LCD display was recorded to demonstrate each circuit functioning, and there is one recording to demonstrate ADC10 and UART functionality from the photoresistor.
 
-## Deliverables
-By the end of the lab, you will need to provide at a minimum well documented main.c files for *EACH* of the 5 development platforms. You will also need to provide a README at the top of each section in your repository. The reason I say minimum is because there are going to be some recommended further practice that is not mandatory, but heavily recommended, especially if you are finishing this lab in only a couple hours. So come Milestone time, I should see 3 folders in your repository with the following titles:
-* PCB Design
-* Sensors and Signal Conditioning
-* Visualizing Data
+### Photoresistor
+The circuit for the photoresistor is simply a voltage divider, using the photoresistor and one other resistor. This second resistor should be approximately the same resistance value of the
+mid-range value of the photoresistor in order for the ADC to have the greatest range. The photoresistor is on the high side of the circuit, and the value at the middle node decreases with
+decreasing light, so the photoresistor increases in resistance as its exposure to light decreases. 
 
-each with the .c and README files for each board. The .c and README files should include the minimum amount of work as well as any extra work that you have done. Each processor should have its project saved in its own folder in each part of the assignment, however you only need one README per part of the assignment.
+### Temperature Sensor
+The temperature sensor device contains all necessary circuitry internally, so no circuit is required; only Vcc, ground, and a pin that varies voltage with temperature. For this lab, ADC 
+values are simply displayed, but Lab 6 precisely calculates the actual temperature. 
 
-### README Files
-Since most of these projects will have just a simple main.c file, you do not need to generate 20 README files. Instead, unless you go for a more advanced implementation of the exercises, you just need 1 README per exercise folder. "But how do I make a README with all of the processors included?" Well now we are getting somewhere. You should talk about the general form of your code as it should be very similar for each processor, but you should highlight what the differences are between each processor. For example, do the clocks need to be initialized differently? As another step forward, you could take that information and somehow make it where your code would work on any of the processors without the need to change it between projects.
+### Phototransistor
+A phototransistor is a light-controlled transistor, in which a base current is induced by light. A high-side switch configuration is used to enable the measurement as voltage. 
+The base pin is left open, but could be biased. The open pin is a good way of isolating two parts of a circuit, i.e. powering an LED from a microprocessor to control a phototransistor.
+The dishwasher circuit used this setup. Increasing light increases the base current, so the high-side switch configuration allows a higher voltage for greater exposure to light. 
 
-### Header Files
-You may find yourself by the end of this lab not having generated any header files, which in this case, ignore this section. If you have generated more than just a main.c you most likely have yourself a .h file or two. Remember from the first lab that any header files or libraries that you generate need to have their own README.md which tell the user what dependencies there are, how to install them into their projects, etc.
+## Visualizing Data: The Software
+All of the circuits described above function with the same software. The MSP430G2553 ADC10 was used for UART communication and MATLAB, and the MSP430FR6989 ADC12 was used to display
+results on its LCD screen. Ultimately, each circuit has a point at which its voltage is read in and used by the microprocessor.
 
-## Documentation
-Since you will most likely be using pre-made code to make most of your code, so what I am going to require you to do is comment each line of code and what it is doing. If you are using code from TI themselves, it will most likely have some of the comments there. But I want you to use your own words when writing these comments. Dive into the datasheets, look into the MSP430.h file to see what registers are being manipulated and tell me why you need to configure them. 
+### The ADC
+For both the ADC10 and ADC12, configuration settings include sample rate, source clock, and the pin(s) to be read from. P1.7 on the G2 and P8.7 on the FR were used. Since sampling rates are
+all very fast, a timer was used to have a sampling rate on the order of 1Hz so the LCD output and UART output could be easily observed. A timer in UPMODE triggers an interrupt that turns on 
+the ADC. When the ADC finishes computing a single conversion, its interrupt triggers. This interrupt turns off the ADC, therefore stopping it from continuing to sample at a fast rate, and
+it transmits the ADC1XMEM value accordingly. The sections below discuss how this part is done.
+
+### UART
+For UART, the UCA0TXBUF simply needs to be assigned the ADC10 value. Since the value is 10 bits, and UART works in bytes, the ADC10 value must be stored in two temp variables. One holds the
+full 10 bits, and one holds that value shifted right 8 bits to send only the upper two. The lower 8 bits are sent when a 10-bit value is given to the buffer. These two values are transmitted
+with a while loop between them to wait for the first value to finish sending before attempting to send the second one.
+
+### MATLAB
+For MATLAB, a script was found online that takes UART input and plots it. In our code, a '\r' character had to be sent for this script to accept a data point. The images and videos folder
+holds the resulting graphs. For our data, this graph may not be meaningful, but the functionality of sending data to MATLAB is demonstrated. 
+
+### LCD
+For the LCD display, characters can be shown. These characters are hex values, which are four bits. This means that for the ADC12, three characters must be used. The provided LCD library easily
+displays characters. However, the integer input must be modified to be transmitted as characters. First, shifting and masking are used to have three temp values holding four bits each. Then, if
+these values are less than 'A', they are 0-9, so the corresponding character value is temp plus '0'. Otherwise, the corresponding character value is temp minus 10 plus 'A'. 
