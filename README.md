@@ -1,4 +1,4 @@
-# Russell Binaco and Tanner Smith Lab 5 README
+# Lab 5 - Russell Binaco and Tanner Smith
 
 Lab 5 Consists of using the microprocessors to read in data from a sensor circuit using an ADC, then visualizing that data through different means.
 
@@ -6,7 +6,6 @@ Lab 5 Consists of using the microprocessors to read in data from a sensor circui
 For this lab, three different sensors were used: a photoresistor, a temperature sensor, and a phototransistor. These sensors produce a resistance, voltage, and current, respectively, satisfying
 the requirements for the lab. 
 In the images and videos folder, there is a picture that shows each circuit. 
-The LCD display was recorded to demonstrate each circuit functioning, and there is one recording to demonstrate ADC10 and UART functionality from the photoresistor.
 
 ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/All%20three%20circuits.jpg)
 
@@ -18,7 +17,7 @@ decreasing light, so the photoresistor increases in resistance as its exposure t
 ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/Photoresistor%20GIF.gif)
 
 ### Temperature Sensor
-The temperature sensor device contains all necessary circuitry internally, so no circuit is required; only Vcc, ground, and a pin that varies voltage with temperature. For this lab, ADC 
+The temperature sensor device contains all necessary circuitry internally, so no circuit is required; only Vcc, ground, and a pin that varies voltage with temperature. For the specific temperature sensor used, for every increase in degree Celsius, the voltage varying pin increased by 10 mV. For this lab, ADC 
 values are simply displayed, but Lab 6 precisely calculates the actual temperature. 
 
 ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/Temperature%20Sensor%20GIF.gif)
