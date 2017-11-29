@@ -2,6 +2,8 @@
 
 Lab 5 Consists of using the microprocessors to read in data from a sensor circuit using an ADC, then visualizing that data through different means.
 
+NOTE: All code for this lab (ADC10, ADC12 and LCD Screen) is in Sensors and Signal Conditioning folder.
+
 ## Sensors and Signal Conditioning: The Hardware
 For this lab, three different sensors were used: a photoresistor, a temperature sensor, and a phototransistor. These sensors produce a resistance, voltage, and current, respectively, satisfying
 the requirements for the lab. 
