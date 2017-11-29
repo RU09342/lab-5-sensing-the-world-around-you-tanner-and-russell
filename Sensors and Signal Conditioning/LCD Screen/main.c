@@ -173,14 +173,16 @@ void ADC12_ISR(void)
     case 12:{                                // Vector 12:  ADC12BMEM0 Interrupt
 
       uint16_t value = ADC12_B_getResults(ADC12_B_BASE, ADC12_B_MEMORY_0);
+	  //here, temp values are created from masking all but four bits of the ADC value.
       uint16_t hex1 = value & 0x0F00;
       uint16_t hex2 = value & 0x00F0;
       uint16_t hex3 = value & 0x000F;
-
+	  //now, shifting is done for the bits to all be LSBs.
       hex1 = hex1 >> 8;
       hex2 = hex2 >> 4;
       hex3 = hex3 >> 0;
 
+	  //for each value, add '0' or 'A'-10 to get the correct hex char value corresponding to the int value.
       if(hex1 < 10){
           showChar('0' + hex1, 1);
       }
