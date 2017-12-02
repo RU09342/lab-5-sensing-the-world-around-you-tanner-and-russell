@@ -24,14 +24,18 @@ LCD            |  UART
 The temperature sensor device contains all necessary circuitry internally, so no circuit is required; only Vcc, ground, and a pin that varies voltage with temperature. For the specific temperature sensor used, for every increase in degree Celsius, the voltage varying pin increased by 10 mV. For this lab, ADC 
 values are simply displayed, but Lab 6 precisely calculates the actual temperature. 
 
-![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/Temperature%20Sensor%20GIF.gif)
+LCD            |  UART
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/LCD%20gifs/Temperature%20Sensor%20GIF.gif)  |  ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/UART%20gifs/Temperature%20Sensor%20GIF.gif)
 
 ### Phototransistor
 A phototransistor is a light-controlled transistor, in which a base current is induced by light. A high-side switch configuration is used to enable the measurement as voltage. 
 The base pin is left open, but could be biased. The open pin is a good way of isolating two parts of a circuit, i.e. powering an LED from a microprocessor to control a phototransistor.
 The dishwasher circuit used this setup. Increasing light increases the base current, so the high-side switch configuration allows a higher voltage for greater exposure to light. 
 
-![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/Phototransistor%20GIF.gif)
+LCD            |  UART
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/LCD%20gifs/Phototransistor%20GIF.gif) |  ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/UART%20gifs/Phototransistor%20GIF.gif)
 
 ## Visualizing Data: The Software
 All of the circuits described above function with the same software. The MSP430G2553 ADC10 was used for UART communication and MATLAB, and the MSP430FR6989 ADC12 was used to display
