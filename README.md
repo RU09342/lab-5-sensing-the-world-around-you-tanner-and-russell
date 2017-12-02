@@ -16,7 +16,9 @@ The circuit for the photoresistor is simply a voltage divider, using the photore
 mid-range value of the photoresistor in order for the ADC to have the greatest range. The photoresistor is on the high side of the circuit, and the value at the middle node decreases with
 decreasing light, so the photoresistor increases in resistance as its exposure to light decreases. 
 
-![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/Photoresistor%20GIF.gif)
+LCD            |  UART
+:-------------------------:|:-------------------------:
+![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/LCD%20gifs/Photoresistor%20GIF.gif)  |  ![alt text](https://github.com/RU09342/lab-5-sensing-the-world-around-you-tanner-and-russell/blob/master/Lab5%20images%20and%20videos/UART%20gifs/Photoresistor%20GIF.gif)
 
 ### Temperature Sensor
 The temperature sensor device contains all necessary circuitry internally, so no circuit is required; only Vcc, ground, and a pin that varies voltage with temperature. For the specific temperature sensor used, for every increase in degree Celsius, the voltage varying pin increased by 10 mV. For this lab, ADC 
